@@ -14,6 +14,24 @@
     <url-pattern>/svg/*</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>line</servlet-name>
+    <servlet-class>it.unibz.mysasa.util.ApiLineMapServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>line</servlet-name>
+    <url-pattern>/api/line</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>timetable</servlet-name>
+    <servlet-class>it.unibz.mysasa.util.ApiTimetableServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>timetable</servlet-name>
+    <url-pattern>/api/timetable</url-pattern>
+  </servlet-mapping>
+  
   <error-page>
     <exception-type>java.lang.Exception</exception-type>
     <location>/error.jsp</location>
