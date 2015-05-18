@@ -87,6 +87,9 @@ public class ParseData {
 			lp.setColor2(f.properties.hexcolor2);
 			lp.setX(f.geometry.coordinates[0]);
 			lp.setY(f.geometry.coordinates[1]);
+			lp.setFahrtId(f.properties.frt_fid);
+			lp.setGpsDate(Tools.getTS(f.properties.gps_date));
+			lp.setDelaySec(f.properties.delay_sec);
 			LatLon l = conv.getEPSG32632toWGS84(lp.getX(), lp.getY());
 			lp.setLat(l.getLat());
 			lp.setLon(l.getLon());

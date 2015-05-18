@@ -1,6 +1,9 @@
 package it.unibz.mysasa.util;
 
+import java.util.Date;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -85,6 +88,17 @@ public class Tools {
 
 	public static Timestamp getPast(int ndays) {
 		return new Timestamp(getToday().getTime() - ndays * day);
+	}
+
+	public static Timestamp getTS(String gps_date) {
+		Timestamp ret = null;
+		try {
+			//2015-01-25 18:01:58+01
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSX");
+			Date d = sdf.parse(gps_date);
+			ret = new Timestamp(d.getTime());
+		} catch (ParseException e) { ; }
+		return ret;
 	}
 
 }

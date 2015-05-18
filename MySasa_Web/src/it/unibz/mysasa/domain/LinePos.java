@@ -1,5 +1,7 @@
 package it.unibz.mysasa.domain;
 
+import java.sql.Timestamp;
+
 public class LinePos {
 
 	private Integer line = null;
@@ -13,6 +15,9 @@ public class LinePos {
 	private String color2 = null;
 	private Double lat = null;
 	private Double lon = null;
+	private Integer fid = null;
+	private Timestamp gps_date = null;
+	private Integer delay_sec = null;
 	
 	public Integer getLine() {
 		return line;
@@ -96,6 +101,24 @@ public class LinePos {
 	}
 	public void setLon(Double lon) {
 		this.lon = lon;
+	}
+	public Integer getFahrtId() {
+		return fid;
+	}
+	public void setFahrtId(Integer fid) {
+		this.fid = fid;
+	}
+	public Timestamp getGpsDate() {
+		return gps_date;
+	}
+	public void setGpsDate(Timestamp gps_date) {
+		this.gps_date = gps_date;
+	}
+	public Integer getDelaySec() {
+		return delay_sec;
+	}
+	public void setDelaySec(Integer delay_sec) {
+		this.delay_sec = delay_sec;
 	}
 	
 }

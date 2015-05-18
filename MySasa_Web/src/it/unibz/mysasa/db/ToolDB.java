@@ -2,10 +2,12 @@ package it.unibz.mysasa.db;
 
 import it.unibz.mysasa.domain.Fermata;
 import it.unibz.mysasa.domain.Line;
+import it.unibz.mysasa.domain.LinePos;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Vector;
 
@@ -30,6 +32,25 @@ public class ToolDB{
 		q3 += "  var   INT,";
 		q3 += "  ortnr INT ";
 		q3 += ");";
+		String q4 = null;
+		q4 = "CREATE TABLE lineahist( ";
+		q4 += "  line INT,";
+		q4 += "  var INT,";
+		q4 += "  name CHAR(50),";
+		q4 += "  ort INT,";
+		q4 += "  ortname CHAR(50),";
+		q4 += "  x REAL,";
+		q4 += "  y REAL,";
+		q4 += "  lat REAL,";
+		q4 += "  lon REAL,";
+		q4 += "  fid INT,";
+		q4 += "  gps_date TIMESTAMP,";
+		q4 += "  delay_sec INT,";
+		q4 += "  color CHAR(50),";
+		q4 += "  color2 CHAR(50),";
+		q4 += "  cdat TIMESTAMP";
+		q4 += ");";
+		
 		Postgres pg = new Postgres();
 		try {
 			Statement stmt = pg.getCon().createStatement();
@@ -39,6 +60,8 @@ public class ToolDB{
 			stmt.execute(q2);
 			stmt.execute("DROP TABLE IF EXISTS percorso");
 			stmt.execute(q3);
+			stmt.execute("DROP TABLE IF EXISTS lineahist");
+			stmt.execute(q4);
 			stmt.close();
 			pg.getCon().close();
 		} catch (Exception e) {
@@ -71,6 +94,36 @@ public class ToolDB{
 			pstmt.setInt(1, nr);
 			pstmt.setString(2, line);
 			pstmt.setString(3, uri);
+			pstmt.execute();
+			pstmt.close();
+			pg.getCon().close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertLineHist(LinePos lp, Timestamp t){
+		String q = "INSERT INTO lineahist(line, var, name, ort, ortname,"
+				    + "  x, y, lat, lon, fid, gps_date, delay_sec, color,"
+				    + "  color2, cdat) VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?)";
+		Postgres pg = new Postgres();
+		try {
+			PreparedStatement pstmt = pg.getCon().prepareStatement(q);
+			pstmt.setInt(1, lp.getLine());
+			pstmt.setInt(2, lp.getVar());
+			pstmt.setString(3, lp.getName());
+			pstmt.setInt(4, lp.getOrt());
+			pstmt.setString(5, lp.getOrtname());
+			pstmt.setDouble(6, lp.getX());
+			pstmt.setDouble(7, lp.getY());
+			pstmt.setDouble(8, lp.getLat());
+			pstmt.setDouble(9, lp.getLon());
+			pstmt.setInt(10, lp.getFahrtId());
+			pstmt.setTimestamp(11, lp.getGpsDate());
+			pstmt.setInt(12, lp.getDelaySec());
+			pstmt.setString(13, lp.getC());
+			pstmt.setString(14, lp.getC2());
+			pstmt.setTimestamp(15, t);
 			pstmt.execute();
 			pstmt.close();
 			pg.getCon().close();

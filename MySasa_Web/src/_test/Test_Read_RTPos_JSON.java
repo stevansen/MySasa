@@ -22,7 +22,7 @@ public class Test_Read_RTPos_JSON {
 				lp = parse.getPosition(t);
 			}
 			for(LinePos p : lp){
-				System.out.println(p.getLine()+" ("+p.getX()+", "+p.getY()+")");
+				System.out.println(p.getLine()+" "+p.getOrt()+" ("+p.getX()+", "+p.getY()+")");
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
