@@ -94,10 +94,10 @@ public class Tools {
 		Timestamp ret = null;
 		try {
 			//2015-01-25 18:01:58+01
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSX");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssX");
 			Date d = sdf.parse(gps_date);
 			ret = new Timestamp(d.getTime());
-		} catch (ParseException e) { ; }
+		} catch (ParseException e) { e.printStackTrace(); }
 		return ret;
 	}
 
