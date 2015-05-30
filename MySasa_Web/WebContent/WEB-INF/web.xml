@@ -15,21 +15,12 @@
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>line</servlet-name>
-    <servlet-class>it.unibz.mysasa.util.ApiLineMapServlet</servlet-class>
+    <servlet-name>api</servlet-name>
+    <servlet-class>it.unibz.mysasa.util.ApiServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>line</servlet-name>
-    <url-pattern>/api/line</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>timetable</servlet-name>
-    <servlet-class>it.unibz.mysasa.util.ApiTimetableServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>timetable</servlet-name>
-    <url-pattern>/api/timetable</url-pattern>
+    <servlet-name>api</servlet-name>
+    <url-pattern>/api</url-pattern>
   </servlet-mapping>
   
   <error-page>
