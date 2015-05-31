@@ -24,7 +24,7 @@ public class ApiServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String m = request.getParameter("mode");
+		String m = request.getParameter("m");
 		if (m != null) {
 			try {
 				if (m.equals("timetable")) {
