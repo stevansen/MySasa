@@ -27,10 +27,10 @@ public class ApiServlet extends HttpServlet {
 		String m = request.getParameter("m");
 		if (m != null) {
 			try {
-				if (m.equals("timetable")) {
+				if (m.equals("line")) {
 					line(request, response);
 				}
-				if (m.equals("line")) {
+				if (m.equals("timetable")) {
 					timetable(request, response);
 				}
 				if (m.equals("active")) {
