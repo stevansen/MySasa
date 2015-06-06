@@ -46,7 +46,7 @@ public class Tools {
 	
 	public static Integer getInt(String val) {
 		Integer ret = null;
-		try {
+		if(val!=null) try {
 			ret = Integer.valueOf(val.trim());
 		} catch (Exception e) {
 			e.printStackTrace();

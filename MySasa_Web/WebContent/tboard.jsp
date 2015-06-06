@@ -15,19 +15,41 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 	<link rel="apple-touch-icon" href="./img/logo.png" />
     <link rel="shortcut icon" href="favicon.ico" />
+	<style type="text/css">
+		.ui-icon-mysasa-loc {
+			background-image: url("img/Locate.png");
+		}
+	</style>
 	<title>MySASA</title>
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script>
+	function locate() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else {
+			alert("Geolocation is not supported by this browser.");
+		}
+	}
+	function showPosition(position) {
+		url = "tboard.jsp?lat=" + position.coords.latitude + "&lon="+ position.coords.longitude;
+		window.location.href = url;
+	}
+	</script>
 </head>
 <body>
   <%if(t!=null){%>
     <div data-role="header">
-		<h1><%=t.stationname%>
-		<a data-role="button" href="index.jsp" data-icon="home" data-iconpos="left" class="ui-btn-right" rel="external">
+    	<a data-role="button" href="index.jsp" data-icon="home" data-iconpos="left" class="ui-btn-left" rel="external">
       	Home
     	</a>
+		<h1>
+		<%=t.stationname%>
 		</h1>
+		<a onclick="locate();" rel="external" class="ui-btn-right">
+      		<img src="img/Locate.png" width="30px" height="30px"/>
+    	</a>
 	</div>
     <table data-role="table" data-mode="reflow" class="ui-responsive table-stroke">
     <thead>
