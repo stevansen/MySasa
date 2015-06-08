@@ -5,7 +5,13 @@
 <%
   String lat = request.getParameter("lat");
   String lon = request.getParameter("lon");
-  TiTable t = Operations.getClosestTimetableConv(lat, lon);
+  String mode = request.getParameter("mode");
+  TiTable t = null;
+  if(mode!=null && mode.equals("gps")){
+	  t = Operations.getClosestTimetable(lat, lon);
+  }else{
+	  t = Operations.getClosestTimetableConv(lat, lon);
+  }
 %>
 <html>
 <head>
@@ -33,7 +39,7 @@
 		}
 	}
 	function showPosition(position) {
-		url = "tboard.jsp?lat=" + position.coords.latitude + "&lon="+ position.coords.longitude;
+		url = "tboard.jsp?mode=gps&lat=" + position.coords.latitude + "&lon="+ position.coords.longitude;
 		window.location.href = url;
 	}
 	</script>
