@@ -11,6 +11,7 @@
 	String clat = "46.5600548";
 	String clon = "11.2183212";
 	String zoom = "11";
+	String disp = "";
 	String c = "";
 	if(lat!=null && lon!=null && lat.length()>3 && lon.length()>3){
 		clat = lat;
@@ -23,7 +24,7 @@
 		clon = ""+fc.getLon();
 		zoom = "14";
 	}
-	LineMap lm = Operations.getLineMap(line);
+	LineMap lm = Operations.getLineMapNr(line);
 	if(lm!=null && !lm.getLinea().isEmpty()){
 		LinePos p = lm.getLinea().get(0);
 		c = "&c="+p.getC();
@@ -167,7 +168,9 @@ a:visited {
 		var m2 = new OpenLayers.Layer.Markers("Lines");
 		map.addLayer(m2);
 	<%if(lm!=null){
-		for(LinePos l : lm.getLinea()){%>
+		for(LinePos l : lm.getLinea()){
+		 disp = l.getName();
+		%>
 		setBus(<%=l.getX()%>, <%=l.getY()%>, m2);
 		<%}
 		for(Fermata f: lm.getFermate()){%>
@@ -183,7 +186,7 @@ a:visited {
 	<div id="basicMap">
 		<div id="nav">
 			<a class='navbar' href='index.jsp'><img
-				src='./svg/img.svg?<%=c%>' width="20px" height="20px">&nbsp;<%=line%></a>
+				src='./svg/img.svg?<%=c%>' width="20px" height="20px">&nbsp;<%=disp%></a>
 		</div>
 		<div id="loc">
 			<a class='locate' onclick="locate();">

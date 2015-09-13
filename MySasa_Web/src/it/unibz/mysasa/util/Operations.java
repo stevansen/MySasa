@@ -71,6 +71,22 @@ public class Operations {
 		return ret;
 	}
 	
+	public static synchronized LineMap getLineMapNr(String line){
+		if(line==null || line.length()<1)
+			return null;
+		LineMap ret = new LineMap();
+		ParseData p = new ParseData();
+		List<Line> ll = db.getLineByNr(line);
+		for(Line t : ll){
+			ret.getLinea().addAll(p.getPositionLine(t.getURI()));
+		}
+		HashSet<Fermata> hs_f = new HashSet<Fermata>();
+		for(LinePos lp : ret.getLinea()){
+			hs_f.addAll(db.getFermate(lp.getLine(), lp.getVar()));
+		}
+		ret.getFermate().addAll(hs_f);
+		return ret;
+	}
 	
 	public static synchronized LineMap getLineMap(String line){
 		if(line==null || line.length()<1)

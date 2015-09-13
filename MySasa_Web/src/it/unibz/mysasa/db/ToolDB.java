@@ -3,6 +3,7 @@ package it.unibz.mysasa.db;
 import it.unibz.mysasa.domain.Fermata;
 import it.unibz.mysasa.domain.Line;
 import it.unibz.mysasa.domain.LinePos;
+import it.unibz.mysasa.util.Tools;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +11,8 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Vector;
+
+import org.geotoolkit.lang.Static;
 
 public class ToolDB{
 
@@ -147,6 +150,23 @@ public class ToolDB{
 		try {
 			PreparedStatement pstmt = pg.getCon().prepareStatement(q);
 			pstmt.setString(1, name);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ret.add(buildLine(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+	
+	public List<Line> getLineByNr(String name){
+		List<Line> ret = new Vector<Line>();
+		String q = "SELECT * FROM linea WHERE linr = ?;";
+		Postgres pg = new Postgres();
+		try {
+			PreparedStatement pstmt = pg.getCon().prepareStatement(q);
+			pstmt.setInt(1, Tools.getInt(name));
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				ret.add(buildLine(rs));

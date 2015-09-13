@@ -27,7 +27,7 @@
 			for (LinePos p : pd.getPosition()) {
 		%>
 		<li>
-			<a href="line.jsp?line=<%=p.getName()%>&ort=<%=p.getOrt()%>" data-ajax="false" data-rel="external">
+			<a href="line.jsp?line=<%=p.getLine()%>&ort=<%=p.getOrt()%>" data-ajax="false" data-rel="external">
 			<div>
 			<img src="./svg/img.svg?c=<%=p.getC()%>" width="30px" height="30px" />
 			<%=p.getName()%> - <%=p.getOrtname()%>
