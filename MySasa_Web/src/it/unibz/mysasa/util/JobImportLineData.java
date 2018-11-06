@@ -22,8 +22,9 @@ public class JobImportLineData extends Thread {
 			try{
 			ToolDB db = new ToolDB();
 			for (LinePos p : pd.getPosition()) {
-				db.insertLineHist(p, now);
+				db.insertLinePosHist(p, now);
 			}
+			db.cleanLinePosHist();
 			}catch(Exception e){e.printStackTrace();}
 			sleep(delay);
 		}

@@ -27,8 +27,8 @@ public class ParseData {
 	private String url_lines = "http://opensasa.info/SASAplandata/?type=REC_LID";
 	private String url_perc = "http://opensasa.info/SASAplandata/?type=LID_VERLAUF";
 	private String url_stat = "http://opensasa.info/SASAplandata/?type=REC_ORT";
-	private String url_rtpos = "http://realtime.opensasa.info/positions";
-	private String url_rtpos_l = "http://realtime.opensasa.info/positions?lines=";
+	private String url_rtpos = "http://realtimebus.tis.bz.it/positions";
+	private String url_rtpos_l = "http://realtimebus.tis.bz.it/positions?lines=";
 	private String url_station = "http://stationboard.opensasa.info/?type=json&ORT_NR=";
 
 	private String getURL(String val) {

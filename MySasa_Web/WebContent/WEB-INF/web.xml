@@ -23,6 +23,16 @@
     <url-pattern>/api</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>LineDataCacheServlet</servlet-name>
+    <servlet-class>it.unibz.mysasa.util.LineDataCacheServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LineDataCacheServlet</servlet-name>
+    <url-pattern>/cacheLineData</url-pattern>
+  </servlet-mapping>
+
   <error-page>
     <exception-type>java.lang.Exception</exception-type>
     <location>/error.jsp</location>

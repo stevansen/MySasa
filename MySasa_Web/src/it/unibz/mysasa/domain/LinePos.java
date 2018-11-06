@@ -18,6 +18,7 @@ public class LinePos {
 	private Integer fid = null;
 	private Timestamp gps_date = null;
 	private Integer delay_sec = null;
+	private Timestamp cdat = null;
 	
 	public Integer getLine() {
 		return line;
@@ -119,6 +120,12 @@ public class LinePos {
 	}
 	public void setDelaySec(Integer delay_sec) {
 		this.delay_sec = delay_sec;
+	}
+	public Timestamp getCreateDat() {
+		return cdat;
+	}
+	public void setCreateDat(Timestamp cdat) {
+		this.cdat = cdat;
 	}
 	
 }

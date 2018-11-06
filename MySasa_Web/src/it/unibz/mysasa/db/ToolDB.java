@@ -12,8 +12,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Vector;
 
-import org.geotoolkit.lang.Static;
-
 public class ToolDB{
 
 	public void createDB() {
@@ -105,7 +103,57 @@ public class ToolDB{
 		}
 	}
 	
-	public void insertLineHist(LinePos lp, Timestamp t){
+	
+	private LinePos buildLinePosHist(ResultSet rs) throws Exception {
+		LinePos l = new LinePos();
+		l.setLine(rs.getInt("line"));
+		l.setVar(rs.getInt("var"));
+		l.setName(rs.getString("name"));
+		l.setOrt(rs.getInt("ort"));
+		l.setOrtname(rs.getString("ortname"));
+		l.setX(rs.getDouble("x"));
+		l.setY(rs.getDouble("y"));
+		l.setLat(rs.getDouble("lat"));
+		l.setLon(rs.getDouble("lon"));
+		l.setFahrtId(rs.getInt("fid"));
+		l.setGpsDate(rs.getTimestamp("gps_date"));
+		l.setDelaySec(rs.getInt("delay_sec"));
+		l.setColor(rs.getString("color"));
+		l.setColor2(rs.getString("color2"));
+		l.setCreateDat(rs.getTimestamp("cdat"));
+		return l;
+	}
+	
+	public List<LinePos> getLinePosHist(){
+		List<LinePos> ret = new Vector<LinePos>();
+		String q = "SELECT * FROM lineahist";
+		Postgres pg = new Postgres();
+		try {
+			PreparedStatement pstmt = pg.getCon().prepareStatement(q);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ret.add(buildLinePosHist(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+	
+	public void cleanLinePosHist() {
+		String q = "DELETE FROM lineahist WHERE cdat < (current_timestamp - interval '3 hour')";
+		Postgres pg = new Postgres();
+		try {
+			Statement stmt = pg.getCon().createStatement();
+			stmt.execute(q);
+			stmt.close();
+			pg.getCon().close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void insertLinePosHist(LinePos lp, Timestamp t){
 		String q = "INSERT INTO lineahist(line, var, name, ort, ortname,"
 				    + "  x, y, lat, lon, fid, gps_date, delay_sec, color,"
 				    + "  color2, cdat) VALUES (?,?,?,?,?, ?,?,?,?,?, ?,?,?,?,?)";
