@@ -17,7 +17,7 @@ html, body, #basicMap {
 	margin: 0;
 }
 </style>
-<script src="http://openlayers.org/api/OpenLayers.js"
+<script src="https://openlayers.org/api/OpenLayers.js"
 	type="text/javascript"></script>
 <script>
 	var fromPrj = new OpenLayers.Projection("EPSG:4326"); // Transform from WGS 1984

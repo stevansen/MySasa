@@ -83,10 +83,10 @@ a:visited {
 	color: #000000;
 }
 </style>
-<script src="http://openlayers.org/api/OpenLayers.js"
+<script src="https://openlayers.org/api/OpenLayers.js"
 	type="text/javascript"></script>
 <script
-	src="http://svn.osgeo.org/metacrs/proj4js/trunk/lib/proj4js-combined.js"
+	src="https://svn.osgeo.org/metacrs/proj4js/trunk/lib/proj4js-combined.js"
 	type="text/javascript"></script>
 
 <script>
