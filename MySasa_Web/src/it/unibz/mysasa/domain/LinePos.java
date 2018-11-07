@@ -2,7 +2,7 @@ package it.unibz.mysasa.domain;
 
 import java.sql.Timestamp;
 
-public class LinePos {
+public class LinePos implements Comparable<LinePos>{
 
 	private Integer line = null;
 	private Integer var = null;
@@ -126,6 +126,15 @@ public class LinePos {
 	}
 	public void setCreateDat(Timestamp cdat) {
 		this.cdat = cdat;
+	}
+	@Override
+	public int compareTo(LinePos o) {
+		int ret = line.compareTo(o.line);
+		if(ret==0)
+			ret = fid.compareTo(fid);
+		if(ret==0)
+			ret = cdat.compareTo(o.cdat);
+		return ret;
 	}
 	
 }

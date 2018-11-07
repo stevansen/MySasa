@@ -108,9 +108,9 @@ public class ToolDB{
 		LinePos l = new LinePos();
 		l.setLine(rs.getInt("line"));
 		l.setVar(rs.getInt("var"));
-		l.setName(rs.getString("name"));
+		l.setName(rs.getString("name").trim());
 		l.setOrt(rs.getInt("ort"));
-		l.setOrtname(rs.getString("ortname"));
+		l.setOrtname(rs.getString("ortname").trim());
 		l.setX(rs.getDouble("x"));
 		l.setY(rs.getDouble("y"));
 		l.setLat(rs.getDouble("lat"));
@@ -118,8 +118,8 @@ public class ToolDB{
 		l.setFahrtId(rs.getInt("fid"));
 		l.setGpsDate(rs.getTimestamp("gps_date"));
 		l.setDelaySec(rs.getInt("delay_sec"));
-		l.setColor(rs.getString("color"));
-		l.setColor2(rs.getString("color2"));
+		l.setColor(rs.getString("color").trim());
+		l.setColor2(rs.getString("color2").trim());
 		l.setCreateDat(rs.getTimestamp("cdat"));
 		return l;
 	}
@@ -140,8 +140,25 @@ public class ToolDB{
 		return ret;
 	}
 	
+	public List<LinePos> getLinePosHist(String line){
+		List<LinePos> ret = new Vector<LinePos>();
+		String q = "SELECT * FROM lineahist WHERE line LIKE ?";
+		Postgres pg = new Postgres();
+		try {
+			PreparedStatement pstmt = pg.getCon().prepareStatement(q);
+			pstmt.setInt(1, Tools.getInt(line));
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				ret.add(buildLinePosHist(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return ret;
+	}
+	
 	public void cleanLinePosHist() {
-		String q = "DELETE FROM lineahist WHERE cdat < (current_timestamp - interval '3 hour')";
+		String q = "DELETE FROM lineahist WHERE cdat < (current_timestamp - interval '15 minute')";
 		Postgres pg = new Postgres();
 		try {
 			Statement stmt = pg.getCon().createStatement();
