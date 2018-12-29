@@ -44,6 +44,11 @@
     	</tr>
     <%}%>
     </tbody>
+    <tfoot>
+    <tr>
+    		<td>Station: <%=t.ortnr%></td>
+    	</tr>
+    </tfoot>
     </table>
   <%}%>
 </body>

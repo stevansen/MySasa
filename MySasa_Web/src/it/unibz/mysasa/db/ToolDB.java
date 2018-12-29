@@ -142,7 +142,7 @@ public class ToolDB{
 	
 	public List<LinePos> getLinePosHist(String line){
 		List<LinePos> ret = new Vector<LinePos>();
-		String q = "SELECT * FROM lineahist WHERE line LIKE ?";
+		String q = "SELECT * FROM lineahist WHERE line = ?";
 		Postgres pg = new Postgres();
 		try {
 			PreparedStatement pstmt = pg.getCon().prepareStatement(q);

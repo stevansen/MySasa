@@ -54,6 +54,7 @@ public class ParseData {
 		TiTable ret = null;
 		String t = getURL(url_station+station);
 		ret = getTimetable(t);
+		ret.ortnr = station;
 		return ret;
 	}
 

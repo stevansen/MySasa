@@ -9,13 +9,14 @@ public class Test_RetriveLineMapData {
 
 	public static void main(String[] args) {
 		System.out.println("Start");
-		LineMap lm = Operations.getLineMap("201");
+		LineMap lm = Operations.getCacheLineMapNr("201");
+		
 		for(LinePos l : lm.getLinea()){
-			System.out.println(l.getName()+"  "+l.getX()+"  "+l.getY());
+			System.out.println(l.getName()+"  "+l.getX()+"  "+l.getY()+"  "+l.getCreateDat()+"   "+l.getSize());
 		}
-		for(Fermata f: lm.getFermate()){
-			System.out.println(f.getOrtNr()+"   "+f.getLat()+"   "+f.getLon());
-		}
+//		for(Fermata f: lm.getFermate()){
+//			System.out.println(f.getOrtNr()+"   "+f.getLat()+"   "+f.getLon());
+//		}
 		System.out.println("Stop");
 	}
 }

@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 public class JobImportLineData extends Thread {
 
-	private static boolean run = true;
+	private static boolean run = false;
 	private static long delay = 60000; // 1min.
 
 	public static void setRunning(boolean v) {

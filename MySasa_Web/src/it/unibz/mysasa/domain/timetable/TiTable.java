@@ -4,5 +4,6 @@ public class TiTable {
 
 	public TiRides[] rides = null;
 	public String stationname = null;
+	public String ortnr = null;
 	
 }

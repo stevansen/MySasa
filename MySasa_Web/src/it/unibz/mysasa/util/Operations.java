@@ -1,5 +1,6 @@
 package it.unibz.mysasa.util;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -80,6 +81,20 @@ public class Operations {
 		for(Line t : ll){
 			ret.getLinea().addAll(p.getPositionLine(t.getURI()));
 		}
+		HashSet<Fermata> hs_f = new HashSet<Fermata>();
+		for(LinePos lp : ret.getLinea()){
+			hs_f.addAll(db.getFermate(lp.getLine(), lp.getVar()));
+		}
+		ret.getFermate().addAll(hs_f);
+		return ret;
+	}
+	
+	public static synchronized LineMap getCacheLineMapNr(String line){
+		if(line==null || line.length()<1)
+			return null;
+		LineMap ret = new LineMap();
+		ret.getLinea().addAll(db.getLinePosHist(line));
+		Collections.sort(ret.getLinea());
 		HashSet<Fermata> hs_f = new HashSet<Fermata>();
 		for(LinePos lp : ret.getLinea()){
 			hs_f.addAll(db.getFermate(lp.getLine(), lp.getVar()));
